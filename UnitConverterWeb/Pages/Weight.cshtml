@@ -1,0 +1,47 @@
+﻿@page
+@model UnitConverterWeb.Pages.WeightModel
+@{
+    ViewData["Title"] = "Weight Converter";
+}
+
+<div class="text-center">
+    <h1>Weight Converter</h1>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.convertedValue.ToString()))
+{
+    <div class="mt-4 text-center">
+        <h3>Converted Value</h3>
+        <h4>@Model.originalValue @Model.OriginalUnitMesure = @Model.convertedValue @Model.ResultUnitMesure</h4>
+        <a class="btn btn-primary" asp-page="./Weight">Convert Another Value</a>
+    </div>
+}
+else
+{
+    <div class="container mt-4">
+        <form method="post">
+            <div class="mx-auto mb-3" style="max-width: 300px;">
+                <label for="weight">Enter the weight to convert</label>
+                <input type="number" class="form-control" id="weight" asp-for="WeightConversionModel.Weight" placeholder="weight" />
+                <span asp-validation-for="WeightConversionModel.Weight" class="text-danger"></span>
+            </div>
+            <div class="mx-auto mb-3" style="max-width: 300px;">
+                <label for="originalUnit">Unit to Convert from</label>
+                <input type="text" class="form-control" id="originalUnit" asp-for="WeightConversionModel.OriginalUnit" placeholder="pounds/kilograms" />
+                <span asp-validation-for="WeightConversionModel.OriginalUnit" class="text-danger"></span>
+            </div>
+            <div class="mx-auto mb-3" style="max-width: 300px;">
+                <label for="resultUnit">Unit to Convert to</label>
+                <input type="text" class="form-control" id="resultUnit" asp-for="WeightConversionModel.ResultUnit" placeholder="pounds/kilograms" />
+                <span asp-validation-for="WeightConversionModel.ResultUnit" class="text-danger"></span>
+            </div>
+            <div class="mx-auto mb-3" style="max-width: 300px;">
+                <button type="submit" class="btn btn-primary">Convert</button>
+            </div>
+        </form>
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

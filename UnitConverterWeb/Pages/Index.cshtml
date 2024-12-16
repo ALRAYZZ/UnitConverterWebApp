@@ -1,0 +1,49 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Length Converter";
+}
+
+<div class="text-center">
+    <h1>Lenght Converter</h1>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.convertedValue.ToString()))
+{
+	<div class="mt-4 text-center">
+		<h3>Converted Value</h3>
+		<h4>@Model.originalValue @Model.OriginalUnitMesure = @Model.convertedValue @Model.ResultUnitMesure</h4>
+		<a class="btn btn-primary" asp-page="./Index">Convert Another Value</a>
+    </div>
+}
+else
+{
+    <div class="container mt-4">
+        <form method="post">
+            <div class="mx-auto mb-3" style="max-width: 300px;">
+                <label for="length">Enter the length to convert</label>
+                <input type="number" class="form-control" id="length" asp-for="LengthConversionModel.Length" placeholder="length" />
+                <span asp-validation-for="LengthConversionModel.Length" class="text-danger"></span>
+            </div>
+            <div class="mx-auto mb-3" style="max-width: 300px;">
+                <label for="originalUnit">Unit to Convert from</label>
+                <input type="text" class="form-control" id="originalUnit" asp-for="LengthConversionModel.OriginalUnit" placeholder="feets/meters" />
+                <span asp-validation-for="LengthConversionModel.OriginalUnit" class="text-danger"></span>
+            </div>
+            <div class="mx-auto mb-3" style="max-width: 300px;">
+                <label for="resultUnit">Unit to Convert to</label>
+                <input type="text" class="form-control" id="resultUnit" asp-for="LengthConversionModel.ResultUnit" placeholder="feets/meters" />
+                <span asp-validation-for="LengthConversionModel.ResultUnit" class="text-danger"></span>
+            </div>
+            <div class="mx-auto mb-3" style="max-width: 300px;">
+                <button type="submit" class="btn btn-primary">Convert</button>
+            </div>
+        </form>
+    </div>
+}
+
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}
+
+
